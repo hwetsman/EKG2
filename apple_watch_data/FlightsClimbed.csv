@@ -2785,3 +2785,6 @@ date,value,type,unit
 2022-08-16,28,HKQuantityTypeIdentifierFlightsClimbed,count
 2022-08-19,4,HKQuantityTypeIdentifierFlightsClimbed,count
 2022-08-21,4,HKQuantityTypeIdentifierFlightsClimbed,count
+2022-08-26,4,HKQuantityTypeIdentifierFlightsClimbed,count
+2022-08-27,2,HKQuantityTypeIdentifierFlightsClimbed,count
+2022-08-31,2,HKQuantityTypeIdentifierFlightsClimbed,count
