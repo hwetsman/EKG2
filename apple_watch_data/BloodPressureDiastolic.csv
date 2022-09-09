@@ -1,0 +1,5 @@
+date,value,type,unit
+2015-04-02,77.0,HKQuantityTypeIdentifierBloodPressureDiastolic,mmHg
+2018-10-17,85.0,HKQuantityTypeIdentifierBloodPressureDiastolic,mmHg
+2020-08-16,77.0,HKQuantityTypeIdentifierBloodPressureDiastolic,mmHg
+2020-09-13,80.0,HKQuantityTypeIdentifierBloodPressureDiastolic,mmHg
