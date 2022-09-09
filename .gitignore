@@ -1,0 +1,5 @@
+/venv/
+venv/
+.DS*
+export.zip
+apple_health_export/export_cda.xml
