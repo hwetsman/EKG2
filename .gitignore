@@ -4,3 +4,4 @@ venv/
 export.zip
 apple_health_export/export_cda.xml
 /apple_health_export/
+__pycache__/
