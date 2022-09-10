@@ -46,6 +46,7 @@ ekg_file = 'EKG_by_day.csv'
 glucose_file = 'freestyle_by_day.csv'
 watch_list = os.listdir(watch_path)
 watch_file = 'StepCount.csv'
+weight_file = 'BodyMass.csv'
 
 # set potential y_cols
 target = st.sidebar.radio('What is the target?', ['PACs and AFib', 'Histamine Headache'])
@@ -56,6 +57,11 @@ if target == 'Histamine Headache':
                    'more_than_3_next_day', 'more_than_4_next_day',
                    'greater_than_1', 'greater_than_2', 'greater_than_3', 'greater_than_4']
 
+# load weight data
+weight_df = pd.read_csv(watch_path + weight_file)
+weight_df = weight_df.drop(['type', 'unit'], axis=1)
+weight_df.rename(columns={'value': 'mass'}, inplace=True)
+st.write(weight_df)
 
 # load pac/afib data
 ekg_df = pd.read_csv(ekg_file)
@@ -85,6 +91,9 @@ combined_df = combined_df.merge(symptom_df, on='date', how='outer')
 watch_df = pd.read_csv(watch_path+watch_file)
 watch_df = watch_df.drop(['type', 'unit'], axis=1)
 watch_df.rename(columns={'value': 'steps'}, inplace=True)
+# st.write(watch_df)
+# watch_df['weight_change'] = watch_df['BodyMass'] - watch_df['BodyMass'].shift(-1)
+
 watch_df['date'] = pd.to_datetime(watch_df['date'], errors='coerce')
 
 # st.write(ekg_df.columns)
