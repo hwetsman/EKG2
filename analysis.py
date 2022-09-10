@@ -61,11 +61,18 @@ if target == 'Histamine Headache':
 weight_df = pd.read_csv(watch_path + weight_file)
 weight_df = weight_df.drop(['type', 'unit'], axis=1)
 weight_df.rename(columns={'value': 'mass'}, inplace=True)
+weight_df['weight_change'] = weight_df.mass.shift(-1)-weight_df.mass
+weight_df['weight_loss'] = np.where(weight_df.weight_change < 0, 1, 0)
+weight_df['weight_gain'] = np.where(weight_df.weight_change > 0, 1, 0)
+weight_df.date = pd.to_datetime(weight_df.date)
 st.write(weight_df)
 
 # load pac/afib data
 ekg_df = pd.read_csv(ekg_file)
 ekg_df.date = pd.to_datetime(ekg_df.date)
+
+# combine weight and ekg
+combined_df = ekg_df.merge(weight_df, on='date', how='outer')
 
 
 # load glucose data
@@ -79,7 +86,7 @@ glucose_df = glucose_df[~glucose_df.date.str.contains('===')]
 
 glucose_df['date'] = pd.to_datetime(glucose_df['date'], errors='coerce', format='%Y-%m-%d')
 # st.write(glucose_df)
-combined_df = ekg_df.merge(glucose_df, on='date', how='outer')
+combined_df = combined_df.merge(glucose_df, on='date', how='outer')
 # load symptom data
 symptom_df = pd.read_csv('highest_symptom.csv')
 symptom_df['date'] = pd.to_datetime(symptom_df['date'], errors='coerce')
